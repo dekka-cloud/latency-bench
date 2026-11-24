@@ -20,7 +20,9 @@ import (
 )
 
 var (
-	hopLine = regexp.MustCompile(`^\s*(\d+)\s+(.*)$`)
+	// A hop's number starts the line: "  5  41.78.188.139  94.3 ms" from traceroute, and
+	// " 5:  41.78.188.139  94.324ms" or " 1?: [LOCALHOST]" from tracepath.
+	hopLine = regexp.MustCompile(`^\s*(\d+)\??:?\s+(.*)$`)
 	ipField = regexp.MustCompile(`\b(\d{1,3}(?:\.\d{1,3}){3}|[0-9a-fA-F:]*:[0-9a-fA-F:]+)\b`)
 	msField = regexp.MustCompile(`([\d.]+)\s*ms`)
 )
@@ -38,11 +40,26 @@ func route(ctx context.Context, host string, geo *maxminddb.Reader) (*results.Ro
 	if err != nil && len(out) == 0 {
 		return nil, err
 	}
-	r := &results.Route{Tool: tool}
+	r := &results.Route{Tool: tool, Hops: parseHops(out)}
+	for i := range r.Hops {
+		if hop := &r.Hops[i]; hop.Address != "" {
+			hop.Name = reverse(ctx, hop.Address)
+			hop.Country = country(geo, hop.Address)
+		}
+	}
+	return r, nil
+}
+
+// parseHops reads one hop per hop number from traceroute's or tracepath's output. tracepath
+// can print a hop twice and starts with a line for the machine itself; the first line for a
+// hop that names an address wins, and a hop that never answers is kept without one.
+func parseHops(out []byte) []results.Hop {
+	var hops []results.Hop
+	at := map[int]int{}
 	scan := bufio.NewScanner(bytes.NewReader(out))
 	for scan.Scan() {
 		m := hopLine.FindStringSubmatch(scan.Text())
-		if m == nil {
+		if m == nil || strings.Contains(m[2], "[LOCALHOST]") {
 			continue
 		}
 		n, _ := strconv.Atoi(m[1])
@@ -55,13 +72,16 @@ func route(ctx context.Context, host string, geo *maxminddb.Reader) (*results.Ro
 		if ms := msField.FindStringSubmatch(m[2]); ms != nil {
 			hop.RTT, _ = strconv.ParseFloat(ms[1], 64)
 		}
-		if hop.Address != "" {
-			hop.Name = reverse(ctx, hop.Address)
-			hop.Country = country(geo, hop.Address)
+		if i, seen := at[n]; seen {
+			if hops[i].Address == "" && hop.Address != "" {
+				hops[i] = hop
+			}
+			continue
 		}
-		r.Hops = append(r.Hops, hop)
+		at[n] = len(hops)
+		hops = append(hops, hop)
 	}
-	return r, nil
+	return hops
 }
 
 func traceCommand(host string) (string, []string) {
