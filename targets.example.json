@@ -1,0 +1,6 @@
+[
+  { "name": "dekka-accra", "url": "https://accra.bench.example.com" },
+  { "name": "europe-frankfurt", "url": "https://frankfurt.bench.example.com" },
+  { "name": "us-virginia", "url": "https://virginia.bench.example.com" },
+  { "name": "africa-johannesburg", "url": "https://johannesburg.bench.example.com" }
+]

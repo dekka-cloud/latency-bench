@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How far away is your server?</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>How far away is your server?</h1>
+      <p>
+        This page times how long your connection takes to reach the same small service running in different places, from
+        connecting for the first time to loading a page that makes many calls one after another. It runs in your browser
+        and sends nothing anywhere unless you choose to share the result.
+      </p>
+
+      <form id="about">
+        <label>Where are you? <input name="city" placeholder="Accra" autocomplete="off" /></label>
+        <label>
+          Your network
+          <select name="network">
+            <option value="">Choose one</option>
+            <option>MTN</option>
+            <option>Telecel</option>
+            <option>AT</option>
+            <option>Home or office broadband</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>
+          How you're connected
+          <select name="access">
+            <option value="">Choose one</option>
+            <option value="fibre">Fibre</option>
+            <option value="5g">5G</option>
+            <option value="4g">4G</option>
+            <option value="3g">3G</option>
+            <option value="wifi">Wi-Fi, not sure what's behind it</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+        <button id="start" type="submit">Start the test</button>
+      </form>
+
+      <p id="status" role="status"></p>
+      <table id="results" hidden>
+        <thead>
+          <tr>
+            <th>Server</th>
+            <th>First connection</th>
+            <th>Round trip</th>
+            <th>20 calls in a row</th>
+            <th>Download</th>
+            <th>Upload</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <p id="explain" hidden>
+        A first connection pays for finding the server, connecting and setting up encryption before anything loads, which
+        the browser can't measure for the server that sent this page, since it's already connected to it. A round
+        trip is one small request on a connection that's already open. Apps often make calls one after another, each waiting
+        for the last, so the third column shows how distance adds up over twenty of them.
+      </p>
+
+      <div id="share" hidden>
+        <label><input type="checkbox" id="consent" /> Share this result with the study. It includes what you entered above
+          and the timings, and never your address.</label>
+        <button id="send" type="button" disabled>Share</button>
+        <button id="copy" type="button">Copy the result as JSON</button>
+      </div>
+    </main>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

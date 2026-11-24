@@ -1,0 +1,4 @@
+/bin/
+results-*.json
+deploy/.env
+*.mmdb
