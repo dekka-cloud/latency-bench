@@ -1,6 +1,7 @@
 package probe
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/dekka-cloud/latency-bench/internal/results"
@@ -38,6 +39,14 @@ func assertHops(t *testing.T, got, want []results.Hop) {
 	for i := range want {
 		if got[i] != want[i] {
 			t.Errorf("hop %d = %+v, want %+v", i, got[i], want[i])
+		}
+	}
+}
+
+func TestAHostThatLooksLikeAnOptionIsRefused(t *testing.T) {
+	for _, host := range []string{"", "-f", "--help"} {
+		if _, err := route(t.Context(), host, nil); err == nil || !strings.Contains(err.Error(), "isn't a host") {
+			t.Fatalf("route(%q) = %v", host, err)
 		}
 	}
 }

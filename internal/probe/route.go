@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"context"
 	"errors"
+	"fmt"
 	"net"
 	"net/netip"
 	"os/exec"
@@ -30,6 +31,11 @@ var (
 // route traces the path to host with the system's own tool, without resolving names, then
 // looks up each hop's name, and its country when a GeoIP database is open.
 func route(ctx context.Context, host string, geo *maxminddb.Reader) (*results.Route, error) {
+	// The host is the tool's last argument, so one starting with a dash would
+	// be read as an option.
+	if host == "" || strings.HasPrefix(host, "-") {
+		return nil, fmt.Errorf("%q isn't a host name or address", host)
+	}
 	tool, args := traceCommand(host)
 	if tool == "" {
 		return nil, errors.New("no traceroute, tracepath or tracert on this machine")

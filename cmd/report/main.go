@@ -166,14 +166,14 @@ func writeMarkdown(w io.Writer, rows []row, runs int) {
 	last := ""
 	for _, r := range rows {
 		if r.vantage != last {
-			fmt.Fprintf(w, "\n### From %s\n\n", r.vantage)
+			fmt.Fprintf(w, "\n### From %s\n\n", cell(r.vantage))
 			fmt.Fprintln(w, "| Target | Where | First connection | TLS | Round trip | Jitter | 20 calls | Page and 20 calls | 1 MB down | 10 MB down | 1 MB up | UDP loss | Hops | Countries crossed |")
 			fmt.Fprintln(w, "| --- | --- | --: | --: | --: | --: | --: | --: | --: | --: | --: | --: | --: | --- |")
 			last = r.vantage
 		}
 		fmt.Fprintf(w, "| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |\n",
-			r.target, r.location, num(r.connect, 0), num(r.tls, 0), num(r.rtt, 1), num(r.jitter, 1), num(r.calls20, 0), num(r.page20, 0),
-			num(r.down1M, 1), num(r.down10M, 1), num(r.up1M, 1), percent(r.udpLoss), num(r.hops, 0), r.countries)
+			cell(r.target), cell(r.location), num(r.connect, 0), num(r.tls, 0), num(r.rtt, 1), num(r.jitter, 1), num(r.calls20, 0), num(r.page20, 0),
+			num(r.down1M, 1), num(r.down10M, 1), num(r.up1M, 1), percent(r.udpLoss), num(r.hops, 0), cell(r.countries))
 	}
 }
 
@@ -183,10 +183,25 @@ func writeCSV(w io.Writer, rows []row) {
 		"down_1mb_mbps", "down_10mb_mbps", "up_1mb_mbps", "udp_loss", "hops", "countries"})
 	f := func(v float64) string { return fmt.Sprintf("%.2f", v) }
 	for _, r := range rows {
-		_ = c.Write([]string{r.vantage, r.target, r.location, fmt.Sprint(r.runs), f(r.connect), f(r.tls), f(r.rtt), f(r.jitter), f(r.calls20), f(r.page20),
-			f(r.down1M), f(r.down10M), f(r.up1M), fmt.Sprintf("%.4f", r.udpLoss), f(r.hops), r.countries})
+		_ = c.Write([]string{text(r.vantage), text(r.target), text(r.location), fmt.Sprint(r.runs), f(r.connect), f(r.tls), f(r.rtt), f(r.jitter), f(r.calls20), f(r.page20),
+			f(r.down1M), f(r.down10M), f(r.up1M), fmt.Sprintf("%.4f", r.udpLoss), f(r.hops), text(r.countries)})
 	}
 	c.Flush()
+}
+
+// cell keeps a name from a target or a vantage inside its Markdown table
+// cell: a pipe would end the cell and a newline the row.
+func cell(s string) string {
+	return strings.NewReplacer("|", `\|`, "\r", " ", "\n", " ").Replace(s)
+}
+
+// text keeps a name from being read as a formula when the CSV is opened in a
+// spreadsheet, which treats a cell starting with =, +, - or @ as one.
+func text(s string) string {
+	if s != "" && strings.ContainsRune("=+-@\t\r", rune(s[0])) {
+		return "'" + s
+	}
+	return s
 }
 
 func num(v float64, decimals int) string {
