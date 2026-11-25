@@ -59,6 +59,10 @@ Every target serves a page at its root that measures each target listed in its `
 
 RIPE Atlas probes hosted on networks across a country can ping and trace the route to every target without anyone running anything. [atlas/README.md](atlas/README.md) shows how to schedule those measurements.
 
+## Studies
+
+[studies/2026-11-accra](studies/2026-11-accra) holds every result from Dekka's 22-hour study from Accra in November 2026, published as open data under CC BY 4.0, with the script that turns them into the figures in [The round trip from Accra](https://dekka.cloud/research/round-trip-from-accra).
+
 ## Licence
 
-latency-bench is released under the [Apache License 2.0](LICENSE). It's built by [Dekka](https://dekka.cloud) to study what hosting near users does for them, and anyone is welcome to run it and publish what they find.
+latency-bench is released under the [Apache License 2.0](LICENSE), and the study results under their own licence, as each study's README says. It's built by [Dekka](https://dekka.cloud) to study what hosting near users does for them, and anyone is welcome to run it and publish what they find.

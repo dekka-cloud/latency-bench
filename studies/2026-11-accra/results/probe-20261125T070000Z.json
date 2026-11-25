@@ -1,0 +1,505 @@
+{
+  "version": 1,
+  "probe": "dev",
+  "started": "2026-11-25T07:00:00.553462357Z",
+  "vantage": {
+    "city": "Accra",
+    "country": "GH",
+    "network": "Dekka data centre, Accra",
+    "access": "other",
+    "note": "data centre vantage, 07:00 UTC"
+  },
+  "targets": [
+    {
+      "name": "Accra, Ghana (Dekka)",
+      "url": "https://bench-acc.dekka.cloud",
+      "location": "Accra, Ghana",
+      "provider": "Dekka",
+      "connect": [
+        {
+          "dns": 97.731,
+          "tcp": 0.715,
+          "tls": 16.25,
+          "ttfb": 1.666,
+          "total": 117.077,
+          "proto": "HTTP/2.0",
+          "address": "102.68.83.78:443"
+        },
+        {
+          "dns": 96.147,
+          "tcp": 0.649,
+          "tls": 23.141,
+          "ttfb": 1.749,
+          "total": 122.389,
+          "proto": "HTTP/2.0",
+          "address": "102.68.83.78:443"
+        },
+        {
+          "dns": 97.595,
+          "tcp": 0.812,
+          "tls": 19.004,
+          "ttfb": 2.112,
+          "total": 120.086,
+          "proto": "HTTP/2.0",
+          "address": "102.68.83.78:443"
+        },
+        {
+          "dns": 99.311,
+          "tcp": 1.842,
+          "tls": 25.257,
+          "ttfb": 3.064,
+          "total": 130.251,
+          "proto": "HTTP/2.0",
+          "address": "102.68.83.78:443"
+        },
+        {
+          "dns": 105.546,
+          "tcp": 0.728,
+          "tls": 21.925,
+          "ttfb": 3.159,
+          "total": 131.985,
+          "proto": "HTTP/2.0",
+          "address": "102.68.83.78:443"
+        }
+      ],
+      "warm": {
+        "n": 30,
+        "min": 1.973,
+        "median": 2.5805,
+        "p90": 3.2499000000000002,
+        "p99": 3.68977,
+        "max": 3.744,
+        "mean": 2.6293666666666664,
+        "jitter": 0.5633793103448275
+      },
+      "chatty": [
+        {
+          "calls": 10,
+          "total": 25.337
+        },
+        {
+          "calls": 20,
+          "total": 60.749
+        },
+        {
+          "calls": 30,
+          "total": 154.623
+        }
+      ],
+      "page": [
+        {
+          "calls": 10,
+          "total": 408.1,
+          "html": 254.765
+        },
+        {
+          "calls": 20,
+          "total": 281.352,
+          "html": 155.293
+        },
+        {
+          "calls": 10,
+          "total": 168.341,
+          "html": 129.564
+        },
+        {
+          "calls": 20,
+          "total": 176.448,
+          "html": 132.728
+        },
+        {
+          "calls": 10,
+          "total": 221.081,
+          "html": 194.887
+        },
+        {
+          "calls": 20,
+          "total": 218.795,
+          "html": 141.486
+        },
+        {
+          "calls": 10,
+          "total": 189.205,
+          "html": 135.999
+        },
+        {
+          "calls": 20,
+          "total": 282.02,
+          "html": 134.193
+        },
+        {
+          "calls": 10,
+          "total": 154.527,
+          "html": 126.382
+        },
+        {
+          "calls": 20,
+          "total": 214.761,
+          "html": 143.75
+        }
+      ],
+      "download": [
+        {
+          "bytes": 102400,
+          "time": 9.919,
+          "mbps": 82.58897066236516
+        },
+        {
+          "bytes": 1048576,
+          "time": 20.381,
+          "mbps": 411.58961778126684
+        },
+        {
+          "bytes": 10485760,
+          "time": 741.958,
+          "mbps": 113.06041581868516
+        }
+      ],
+      "upload": [
+        {
+          "bytes": 102400,
+          "time": 7.56,
+          "mbps": 108.35978835978835
+        },
+        {
+          "bytes": 1048576,
+          "time": 51.705,
+          "mbps": 162.2397833865197
+        }
+      ],
+      "udp": {
+        "sent": 100,
+        "received": 0,
+        "loss": 1,
+        "rtt": {
+          "n": 0,
+          "min": 0,
+          "median": 0,
+          "p90": 0,
+          "p99": 0,
+          "max": 0,
+          "mean": 0,
+          "jitter": 0
+        }
+      }
+    },
+    {
+      "name": "Johannesburg, South Africa (Google Cloud)",
+      "url": "https://bench-jnb.dekka.cloud",
+      "location": "Johannesburg, South Africa",
+      "provider": "Google Cloud",
+      "connect": [
+        {
+          "dns": 97.184,
+          "tcp": 169.919,
+          "tls": 180.696,
+          "ttfb": 171.166,
+          "total": 619.556,
+          "proto": "HTTP/2.0",
+          "address": "34.35.24.111:443"
+        },
+        {
+          "dns": 97.178,
+          "tcp": 262.652,
+          "tls": 183.038,
+          "ttfb": 172.506,
+          "total": 715.819,
+          "proto": "HTTP/2.0",
+          "address": "34.35.24.111:443"
+        },
+        {
+          "dns": 104.803,
+          "tcp": 172.693,
+          "tls": 183.952,
+          "ttfb": 174.482,
+          "total": 636.411,
+          "proto": "HTTP/2.0",
+          "address": "34.35.24.111:443"
+        },
+        {
+          "dns": 97.092,
+          "tcp": 168.182,
+          "tls": 176.957,
+          "ttfb": 169.439,
+          "total": 612.168,
+          "proto": "HTTP/2.0",
+          "address": "34.35.24.111:443"
+        },
+        {
+          "dns": 96.266,
+          "tcp": 171.085,
+          "tls": 181.188,
+          "ttfb": 172.19,
+          "total": 621.241,
+          "proto": "HTTP/2.0",
+          "address": "34.35.24.111:443"
+        }
+      ],
+      "warm": {
+        "n": 30,
+        "min": 173.857,
+        "median": 174.162,
+        "p90": 174.46370000000002,
+        "p99": 175.1604,
+        "max": 175.288,
+        "mean": 174.21139999999997,
+        "jitter": 0.23327586206896603
+      },
+      "chatty": [
+        {
+          "calls": 10,
+          "total": 1742.533
+        },
+        {
+          "calls": 20,
+          "total": 3486.329
+        },
+        {
+          "calls": 30,
+          "total": 5296.646
+        }
+      ],
+      "page": [
+        {
+          "calls": 10,
+          "total": 3073.194,
+          "html": 628.72
+        },
+        {
+          "calls": 20,
+          "total": 5018.059,
+          "html": 680.277
+        },
+        {
+          "calls": 10,
+          "total": 3188.147,
+          "html": 624.568
+        },
+        {
+          "calls": 20,
+          "total": 4739.877,
+          "html": 616.1
+        },
+        {
+          "calls": 10,
+          "total": 3076.322,
+          "html": 628.651
+        },
+        {
+          "calls": 20,
+          "total": 4730.023,
+          "html": 618.864
+        },
+        {
+          "calls": 10,
+          "total": 3085.358,
+          "html": 628.818
+        },
+        {
+          "calls": 20,
+          "total": 4650.046,
+          "html": 611.445
+        },
+        {
+          "calls": 10,
+          "total": 3001.714,
+          "html": 616.524
+        },
+        {
+          "calls": 20,
+          "total": 4644.789,
+          "html": 611.124
+        }
+      ],
+      "download": [
+        {
+          "bytes": 102400,
+          "time": 711.608,
+          "mbps": 1.1511956020730514
+        },
+        {
+          "bytes": 1048576,
+          "time": 697.63,
+          "mbps": 12.024437022490432
+        },
+        {
+          "bytes": 10485760,
+          "time": 1169.994,
+          "mbps": 71.69787195489891
+        }
+      ],
+      "upload": [
+        {
+          "bytes": 102400,
+          "time": 347.924,
+          "mbps": 2.3545371977788254
+        },
+        {
+          "bytes": 1048576,
+          "time": 525.463,
+          "mbps": 15.964222028953513
+        }
+      ],
+      "udp": {
+        "sent": 100,
+        "received": 100,
+        "loss": 0,
+        "rtt": {
+          "n": 100,
+          "min": 171.624496,
+          "median": 171.747273,
+          "p90": 171.8979178,
+          "p99": 172.20286321,
+          "max": 172.948948,
+          "mean": 171.77823298999996,
+          "jitter": 0.102237393939393
+        }
+      },
+      "route": {
+        "tool": "/usr/bin/tracepath",
+        "hops": [
+          {
+            "n": 1,
+            "address": "102.68.83.254",
+            "rtt": 0.516
+          },
+          {
+            "n": 2,
+            "address": "196.44.100.237",
+            "rtt": 1.396
+          },
+          {
+            "n": 3,
+            "address": "196.44.100.210",
+            "name": "gw-wacs02.ecoband.net.gh",
+            "rtt": 0.37
+          },
+          {
+            "n": 4,
+            "address": "197.157.66.117",
+            "rtt": 0.504
+          },
+          {
+            "n": 5,
+            "address": "41.78.188.139",
+            "rtt": 3020.966
+          },
+          {
+            "n": 6,
+            "address": "41.78.188.178",
+            "rtt": 94.047
+          },
+          {
+            "n": 7,
+            "address": "195.66.224.125",
+            "rtt": 94.312
+          },
+          {
+            "n": 11
+          },
+          {
+            "n": 12
+          },
+          {
+            "n": 13
+          },
+          {
+            "n": 14
+          },
+          {
+            "n": 15
+          },
+          {
+            "n": 16
+          },
+          {
+            "n": 17
+          },
+          {
+            "n": 18
+          },
+          {
+            "n": 19
+          },
+          {
+            "n": 20
+          },
+          {
+            "n": 21
+          },
+          {
+            "n": 22
+          },
+          {
+            "n": 23
+          },
+          {
+            "n": 24
+          },
+          {
+            "n": 25
+          },
+          {
+            "n": 26
+          },
+          {
+            "n": 27
+          },
+          {
+            "n": 28
+          },
+          {
+            "n": 29
+          },
+          {
+            "n": 30
+          }
+        ]
+      }
+    },
+    {
+      "name": "Frankfurt, Germany (Google Cloud)",
+      "url": "https://bench-fra.dekka.cloud",
+      "location": "",
+      "provider": "",
+      "error": "Get \"https://bench-fra.dekka.cloud/info\": dial tcp: lookup bench-fra.dekka.cloud: i/o timeout",
+      "connect": null,
+      "warm": {
+        "n": 0,
+        "min": 0,
+        "median": 0,
+        "p90": 0,
+        "p99": 0,
+        "max": 0,
+        "mean": 0,
+        "jitter": 0
+      },
+      "chatty": null,
+      "page": null,
+      "download": null,
+      "upload": null
+    },
+    {
+      "name": "Northern Virginia, US (Google Cloud)",
+      "url": "https://bench-iad.dekka.cloud",
+      "location": "",
+      "provider": "",
+      "error": "Get \"https://bench-iad.dekka.cloud/info\": dial tcp: lookup bench-iad.dekka.cloud: i/o timeout",
+      "connect": null,
+      "warm": {
+        "n": 0,
+        "min": 0,
+        "median": 0,
+        "p90": 0,
+        "p99": 0,
+        "max": 0,
+        "mean": 0,
+        "jitter": 0
+      },
+      "chatty": null,
+      "page": null,
+      "download": null,
+      "upload": null
+    }
+  ]
+}
